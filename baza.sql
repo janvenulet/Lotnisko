@@ -1,8 +1,3 @@
-drop table modele;
-drop table bagaze;
-
-
-
 CREATE TABLE MODELE
 (
     id_modelu NUMBER(6,0) PRIMARY KEY,
