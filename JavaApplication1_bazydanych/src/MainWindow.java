@@ -31,6 +31,8 @@ public class MainWindow extends javax.swing.JFrame {
         wyszukajLotButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -59,23 +61,43 @@ public class MainWindow extends javax.swing.JFrame {
 
         wyszukajLotButton.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         wyszukajLotButton.setLabel("Wyszukaj lot");
+        wyszukajLotButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wyszukajLotButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(wyszukajLotButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 440, 240, 110));
         wyszukajLotButton.getAccessibleContext().setAccessibleName("wyszukajLotButton");
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "PRZYLOTY", "ODLOTY"
+                "PRZYLOTY"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 410, 460));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 170, 430));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "ODLOTY"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 180, 430));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -88,6 +110,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void pasazerowieButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pasazerowieButtonActionPerformed
                 new LoginWindow().setVisible(true);
     }//GEN-LAST:event_pasazerowieButtonActionPerformed
+
+    private void wyszukajLotButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wyszukajLotButtonActionPerformed
+                new WyszukiwanieBiletuWindow().setVisible(true);
+    }//GEN-LAST:event_wyszukajLotButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,7 +151,9 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JButton pasazerowieButton;
     private javax.swing.JButton pracownicyButton;
