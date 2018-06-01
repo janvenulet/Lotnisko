@@ -76,6 +76,9 @@ on t.id_lotniska = x.id_lotniska
 join linie n
 on t.id_linii = n.id_linii
 where (trunc(l.data) = trunc(to_date(? || ? || ?, 'DDMMYY')))
+/* mo¿e proœciej i lepiej bêdzie where(trunc(l.data) = trunc(to_date(?, 'DDMMYY')))
+wtedy ? oznacza ciag dzienmiesiacrok, zkonkatenowany po stronie programu
+*/
 AND nazwa_lotniska = ?
 AND cena > ?
 AND cena < ?;
@@ -88,4 +91,3 @@ Pytajniki kolejno to: id_osoby, id_lotu, siedzenie (siedzenie obliczane w progra
 id_bagazu zostanie dodane dopiero przy nadawaniu bagazu na lotnisku
 */
 INSERT INTO BILETY VALUES(BILETY_SEQ.NEXTVAL, ?, ?, ?,null);
-
