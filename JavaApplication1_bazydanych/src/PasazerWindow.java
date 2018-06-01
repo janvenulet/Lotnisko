@@ -15,6 +15,8 @@ public class PasazerWindow extends javax.swing.JFrame {
      */
     public PasazerWindow() {
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**

@@ -15,6 +15,8 @@ public class ObslugaLotniskaWindow extends javax.swing.JFrame {
      */
     public ObslugaLotniskaWindow() {
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**

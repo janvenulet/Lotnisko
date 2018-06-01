@@ -15,6 +15,8 @@ public class WyszukiwanieBiletuWindow extends javax.swing.JFrame {
      */
     public WyszukiwanieBiletuWindow() {
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**

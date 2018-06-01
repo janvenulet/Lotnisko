@@ -15,6 +15,8 @@ public class RejestracjaWindow extends javax.swing.JFrame {
      */
     public RejestracjaWindow() {
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**

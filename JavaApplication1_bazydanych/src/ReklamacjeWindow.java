@@ -15,6 +15,8 @@ public class ReklamacjeWindow extends javax.swing.JFrame {
      */
     public ReklamacjeWindow() {
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**

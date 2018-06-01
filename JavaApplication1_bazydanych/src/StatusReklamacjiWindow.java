@@ -15,6 +15,8 @@ public class StatusReklamacjiWindow extends javax.swing.JFrame {
      */
     public StatusReklamacjiWindow() {
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**

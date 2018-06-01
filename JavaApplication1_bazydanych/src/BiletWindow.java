@@ -15,6 +15,8 @@ public class BiletWindow extends javax.swing.JFrame {
      */
     public BiletWindow() {
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**
