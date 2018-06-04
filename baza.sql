@@ -140,11 +140,12 @@ CREATE TABLE REKLAMACJE
     id_biletu NUMBER(6,0) NOT NULL REFERENCES BILETY (id_biletu)
 );
 
-CREATE TABLE LOGI
+create table logi
 (
     data_zmiany date,
     typ_zmiany CHAR,
-    id_lotu number(6,0),
+    id_lotu_stare number(6,0),
+    id_lotu_nowe number(6,0),
     stara_data date,
     nowa_data date,
     stara_bramka number(6,0),
@@ -305,26 +306,22 @@ INSERT INTO PRZYDZIALY VALUES (2,1);
 INSERT INTO PRZYDZIALY VALUES (2,3);
 INSERT INTO PRZYDZIALY VALUES (3,4);
 
+
 CREATE OR REPLACE TRIGGER LOGGER AFTER INSERT OR UPDATE OR DELETE ON LOTY
 FOR EACH ROW
 DECLARE 
 zmiana char(1);
-
-
 BEGIN
-IF UPDATING 
-then
+IF UPDATING THEN
 zmiana := 'u';
 END IF;
-IF INSERTING
-then
+IF INSERTING THEN
 zmiana := 'i';
 END IF;
-IF DELETING
-then
+IF DELETING THEN
 zmiana := 'd';
 END IF;
-insert into logi values(SYSDATE, zmiana, :old.id_lotu, :old.data, :new.data, :old.bramka,
-                         :new.bramka, :old.status, :new.status, :old.id_samolotu,
-                        :new.id_samolotu, :old.id_trasy, :new.id_trasy);
+    insert into logi values(SYSDATE, zmiana, :old.id_lotu, :new.id_lotu, :old.data, :new.data, :old.bramka,
+                            :new.bramka, :old.status, :new.status, :old.id_samolotu,
+                            :new.id_samolotu, :old.id_trasy, :new.id_trasy);
 END;
