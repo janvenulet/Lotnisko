@@ -1,3 +1,5 @@
+DROP TABLE LOGI;
+
 DROP TABLE REKLAMACJE;
 DROP TABLE UZYTKOWNICY;
 DROP TABLE PRZYDZIALY;
@@ -136,6 +138,23 @@ CREATE TABLE REKLAMACJE
     opis_reklamacji VARCHAR2(70), 
     status_reklamacji NUMBER(1,0), 
     id_biletu NUMBER(6,0) NOT NULL REFERENCES BILETY (id_biletu)
+);
+
+CREATE TABLE LOGI
+(
+    data_zmiany date,
+    typ_zmiany CHAR,
+    id_lotu number(6,0),
+    stara_data date,
+    nowa_data date,
+    stara_bramka number(6,0),
+    nowa_bramka number(6,0),
+    stary_status char(2),
+    nowy_status char(2),
+    stare_id_samolotu number(6,0),
+    nowe_id_samolotu number(6,0),
+    stare_id_trasy number(6,0),
+    nowe_id_trasy number(6,0)
 );
 
 CREATE SEQUENCE uzytkownicy_seq
@@ -285,3 +304,27 @@ INSERT INTO PRZYDZIALY VALUES (1,2);
 INSERT INTO PRZYDZIALY VALUES (2,1);
 INSERT INTO PRZYDZIALY VALUES (2,3);
 INSERT INTO PRZYDZIALY VALUES (3,4);
+
+CREATE OR REPLACE TRIGGER LOGGER AFTER INSERT OR UPDATE OR DELETE ON LOTY
+FOR EACH ROW
+DECLARE 
+zmiana char(1);
+
+
+BEGIN
+IF UPDATING 
+then
+zmiana := 'u';
+END IF;
+IF INSERTING
+then
+zmiana := 'i';
+END IF;
+IF DELETING
+then
+zmiana := 'd';
+END IF;
+insert into logi values(SYSDATE, zmiana, :old.id_lotu, :old.data, :new.data, :old.bramka,
+                         :new.bramka, :old.status, :new.status, :old.id_samolotu,
+                        :new.id_samolotu, :old.id_trasy, :new.id_trasy);
+END;
