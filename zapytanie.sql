@@ -20,7 +20,7 @@ from loty l join trasy t
 on l.id_trasy = t.id_trasy
 join obce_lotniska x
 on t.id_lotniska = x.id_lotniska
-where status = 'ap';
+/*where status = 'ap' OR status = 'sp';*/
 
 /*
 To zapytanie sluzy do wyswietlenia listy odlotow
@@ -30,7 +30,7 @@ from loty l join trasy t
 on l.id_trasy = t.id_trasy
 join obce_lotniska x
 on t.id_lotniska = x.id_lotniska
-where status = 'ao';
+/*where status = 'ao' OR status = 'so';*/
 
 
 /*
@@ -64,7 +64,7 @@ where id_reklamacji = ?;
 
 /*
 To podzapytanie obsluguje wyszukanie lotu wedlug kryteriow
-Pytajniki to: dzien, miesiac, rok, cel (nazwa_lotniska), cena_min, cena_max
+Pytajniki to: data_od, data_do, cel (nazwa_lotniska), cena_min, cena_max
 Format ustawiæ na YY lub YYYY w zale¿noœci od sposobu zapisu w programie
 
 */
@@ -75,10 +75,8 @@ join obce_lotniska x
 on t.id_lotniska = x.id_lotniska
 join linie n
 on t.id_linii = n.id_linii
-where (trunc(l.data) = trunc(to_date(? || ? || ?, 'DDMMYY')))
-/* mo¿e proœciej i lepiej bêdzie where(trunc(l.data) = trunc(to_date(?, 'DDMMYY')))
-wtedy ? oznacza ciag dzienmiesiacrok, zkonkatenowany po stronie programu
-*/
+where (trunc(l.data) >= trunc(to_date(?, 'DDMMYY')))
+AND (trunc(l.data) <= trunc(to_date(?, 'DDMMYY')))
 AND nazwa_lotniska = ?
 AND cena > ?
 AND cena < ?;
@@ -91,3 +89,8 @@ Pytajniki kolejno to: id_osoby, id_lotu, siedzenie (siedzenie obliczane w progra
 id_bagazu zostanie dodane dopiero przy nadawaniu bagazu na lotnisku
 */
 INSERT INTO BILETY VALUES(BILETY_SEQ.NEXTVAL, ?, ?, ?,null);
+
+
+INSERT INTO LOTY VALUES (LOTY_SEQ.NEXTVAL, to_date('20180618 11:20','yyyymmdd hh24:mi'), 1, 'ao', 2, 2);
+
+select * from logi;
