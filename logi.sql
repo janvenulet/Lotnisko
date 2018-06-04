@@ -3,7 +3,8 @@ create table logi
 (
     data_zmiany date,
     typ_zmiany CHAR,
-    id_lotu number(6,0),
+    id_lotu_stare number(6,0),
+    id_lotu_nowe number(6,0),
     stara_data date,
     nowa_data date,
     stara_bramka number(6,0),
@@ -30,8 +31,12 @@ END IF;
 IF DELETING THEN
 zmiana := 'd';
 END IF;
-    insert into logi values(SYSDATE, zmiana, :old.id_lotu, :old.data, :new.data, :old.bramka,
+    insert into logi values(SYSDATE, zmiana, :old.id_lotu, :new.id_lotu, :old.data, :new.data, :old.bramka,
                             :new.bramka, :old.status, :new.status, :old.id_samolotu,
                             :new.id_samolotu, :old.id_trasy, :new.id_trasy);
 END;
 
+
+INSERT INTO LOTY VALUES (LOTY_SEQ.NEXTVAL, to_date('20180819 15:21','yyyymmdd hh24:mi'), 5, 'sp', 2, 4);
+
+SELECT * FROM logi;
