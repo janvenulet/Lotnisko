@@ -1,3 +1,4 @@
+
 DROP TABLE LOGI;
 
 DROP TABLE REKLAMACJE;
@@ -138,7 +139,6 @@ CREATE TABLE REKLAMACJE
     opis_reklamacji VARCHAR2(70), 
     status_reklamacji NUMBER(1,0), 
     id_biletu NUMBER(6,0) NOT NULL REFERENCES BILETY (id_biletu)
-);
 
 create table logi
 (
@@ -304,6 +304,7 @@ INSERT INTO PRZYDZIALY VALUES (1,1);
 INSERT INTO PRZYDZIALY VALUES (1,2);
 INSERT INTO PRZYDZIALY VALUES (2,1);
 INSERT INTO PRZYDZIALY VALUES (2,3);
+
 INSERT INTO PRZYDZIALY VALUES (3,4);
 
 
@@ -325,3 +326,4 @@ END IF;
                             :new.bramka, :old.status, :new.status, :old.id_samolotu,
                             :new.id_samolotu, :old.id_trasy, :new.id_trasy);
 END;
+
